@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+    api:
+        build: ./API
+        restart: always
+        ports: 
+         - '443:443'
+        environment:
+          - DB_NAME=postgres
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+          - POSTGRES_HOST=postgres
+          - POSTGRES_PORT=5432
+
+    averager:
+        build: ./Averager
+        restart: always
+        environment:
+          - DB_NAME=postgres
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+          - POSTGRES_HOST=postgres
+          - POSTGRES_PORT=5432
+        depends_on:
+          - rabbitmq
+
+    rabbitmq:
+        image: rabbitmq:3-management-alpine
+        expose:
+          - '5672'
+          - '15672'
+        volumes:
+          - ./db/rabbitmq/data/:/var/lib/rabbitmq/
+          - ./db/rabbitmq/log/:/var/log/rabbitmq/
+
+    postgres:
+        image: postgres:10.5
+        restart: always
+        environment:
+        # A couple of obvious bad practices of using defaults and 
+        # uploading login details to a public repo. In a real scenario
+        # we'd break these out to a .env file which wouldn't get uploaded or
+        # we could randomise these per deployment.
+        # This database should also only be exposed internally to the docker
+        # container network since we're using 'expose' instead of 'port'.
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgres
+        logging:
+          options:
+            max-size: 10m
+            max-file: "3"
+        expose:
+          - '5432'
+        volumes: 
+          - ./db/postgres-data:/var/lib/postgresql/data
+          - ./db/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
