@@ -51,7 +51,7 @@ When POSTing json objects with additional fields, the additional fields will be 
 1. The mean rating of all reviews associated with an author.
 2. The mean rating of all books associated with an author.
 
-Interpretation 1 would mean that the output is dependant on 2 factors of the book: quality and popularity, where as 2 is only dependant on quality. Normally it's better to favour single factors for analysis (you can always re-synthesise combined results). However to accurately track a book's avarage over time we'd need to store records on a per-book basis (because we may see an updated record for the same book over time and we don't want to measure it twice). The data storage requirements for this version. For this reason we're going to assume the first interpretation (although we'd obviously clarify this with the stakeholders rather than assume).
+Interpretation 1 would mean that the output is dependant on 2 factors of the book: quality and popularity, where as 2 is only dependant on quality. Normally it's better to favour single factors for analysis (you can always re-synthesise combined results), however to accurately track a book's avarage over time we'd need to store records on a per-book basis (because we may see an updated record for the same book over time and we don't want to measure it twice). The data storage requirements for this the second interpretation are therefore significantly higher. For this reason we're going to assume the first interpretation (although we'd obviously clarify this with the stakeholders rather than assume, but in this case I'm not going to hassle them on a weekend).
 
 Assume we don't need to capture the raw data.
 
