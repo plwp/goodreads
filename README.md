@@ -6,20 +6,23 @@ Goodreads Kaggle Challenge
 This example runs within docker containers orchestrated by docker-compose which are both requirements.
 
 To run the example first use:
+
 `docker-compose build`
-Then
-`docker-compose up --scale averager=[n]`
-where [n] is the number of averager instances to spawn.
+
+then:
+
+`docker-compose up --scale averager=[n]` where [n] is the number of averager instances to spawn.
 
 Wait for the RabbitMQ to be booted (should take around 10-15 seconds)
 
 To upload data run:
-`python3 datasource.py [csv file]`
-where [csv file] is the input data (or by default the included goodreads.csv
+
+`python3 datasource.py [csv file]` where [csv file] is the input data (or by default the included goodreads.csv)
 
 Then you can see the top authors by rating by running:
-`python3 presentation.py [n]`
-where [n] is the number of results you want.
+
+`python3 presentation.py [n]` where [n] is the number of results you want.
+
 Note: It can take some time for all the results to appear, but the update is complete when Postgres stops warming the room via your CPU.
 
 ## Assumptions
@@ -55,7 +58,7 @@ It's worth noting that many of the author names are in UTF-8 non-English charact
 
 ## Scope
 
-This repository will focus on a simple backend-API implementation of the deisgn using docker-compose for container orchestration and deployment.
+This repository will focus on a simple backend-API implementation of the design using docker-compose for container orchestration and deployment.
 
 In order to keep the deployment as simple as possible we're avoiding any build scripts and keeping everything we need within the repository.
 
