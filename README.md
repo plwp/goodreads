@@ -40,8 +40,8 @@ Returns a json list of data records ordered by highest average rating with a sec
 Data is passed to and from the API in a json list of objects with the following fields:
   
   - 'author': utf-8 string of an author's name, or a list of comma separated author names
-  - 'average_rating': the average of all ratings for the author
-  - 'rating_count': the number of ratings for the author
+  - 'average_rating': float/number - the average of all ratings for the author
+  - 'rating_count': int/number - the number of ratings for the author
   
 When POSTing json objects with additional fields, the additional fields will be ignored.
 
