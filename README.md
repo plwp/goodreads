@@ -7,11 +7,11 @@ This example runs within docker containers orchestrated by docker-compose which 
 
 To run the example first use:
 
-`docker-compose build`
+`sudo docker-compose build`
 
 then:
 
-`docker-compose up --scale averager=[n]` where [n] is the number of averager instances to spawn.
+`sudo docker-compose up --scale averager=[n]` where [n] is the number of averager instances to spawn.
 
 Wait for the RabbitMQ to be booted (should take around 10-15 seconds)
 
@@ -24,6 +24,26 @@ Then you can see the top authors by rating by running:
 `python3 presentation.py [n]` where [n] is the number of results you want.
 
 Note: It can take some time for all the results to appear, but the update is complete when Postgres stops warming the room via your CPU.
+
+### API
+
+The API of the goodreads service is a RESTful API avaiable on the localhost:443
+
+`POST https://localhost/api/update`
+
+Allows the user to post a list of json data records which will be accumulated in the database. There is no hard limit to batch size but <= 1000 records per request is recommended.
+
+`GET https://localhost/top-authors/<n>`
+
+Returns a json list of data records ordered by highest average rating with a secondary ordering by rating count where <n> is the maximum result count.
+  
+Data is passed to and from the API in a json list of objects with the following fields:
+  
+  - 'author': utf-8 string of an author's name, or a list of comma separated author names
+  - 'average_rating': the average of all ratings for the author
+  - 'rating_count': the number of ratings for the author
+  
+When POSTing json objects with additional fields, the additional fields will be ignored.
 
 ## Assumptions
 
