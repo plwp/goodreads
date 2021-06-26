@@ -104,5 +104,6 @@ Issues:
 - In order to easily split the DataModel code we're using dicts instead of Classes, which would definitely be better practice.
 - Database access is definitely the biggest bottleneck. In the end I went with copping the hit to memory to reduce the number of transactions, but there's definitely a better way to be doing it that doesn't kill the speed. I'd definitely want to get some ideas from someone with strong DB expertise. The other option would just be to switch to a non-relational solution. As a proof of concept it's fine but it's definitely something that would need fixing. By fixing this issue we can expect a 15x speedup.
 - Even without real time requirements improving CPU and memory efficiency will cut down on costs.
+- There's got to be a more gracefull way to know when RabbitMQ is up and running than just crashing until it's up.
 
 
