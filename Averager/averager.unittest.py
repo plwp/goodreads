@@ -9,6 +9,7 @@ base_dataset = [
 
 class TestAverager(unittest.TestCase):
     def test_process_data(self):
+        # We're using a single function to ensure linear execution
         # Basic functionality
         processed = process_data(base_dataset)
         self.assertTrue(len(processed) == 2)
@@ -49,8 +50,9 @@ class TestAverager(unittest.TestCase):
         with self.assertRaises(KeyError):
             processed = process_data(bad_data)
              
-        # Et, al. 
-        # ...
+        bad_data = [{'author': 'Somdasda', 'average_rating': 'not even a number', 'rating_count':2.3}]
+        with self.assertRaises(ValueError):
+            processed = process_data(bad_data)
 
 if __name__ == '__main__':
     unittest.main()

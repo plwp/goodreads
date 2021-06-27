@@ -23,7 +23,15 @@ Then you can see the top authors by rating by running:
 
 `python3 presentation.py [n]` where [n] is the number of results you want.
 
-Note: It can take some time for all the results to appear, but the update is complete when Postgres stops warming the room via your CPU.
+Note: It can take some time for all the results to appear
+
+### Tests
+
+Tests can be run within a test deployment by running:
+
+`sudo test_runner.sh` 
+
+Or indivudial units tests can be run if the required modules are installed locally.
 
 ### API
 
