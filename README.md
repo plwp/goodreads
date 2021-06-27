@@ -101,9 +101,11 @@ This is a pretty asymmetrical pipeline: we're doing non-trivial processing on th
 From the pattern we then want to simplify where possible and make sure we decouple anything that we have a high chance of changing if circumstances change. In this case the data is simple enough that we don't need separately synced read and write databases, so we'll just use a single database. We'll add a DataModel abstraction to allow for this to change if there's significant asymmetrical scaling in the future. 
 
 Command Pipeline
+  
 API -> Data Ingress -> RabbitMQ -> Averager|DataModel ->  DB
 
 Query Pipeline
+  
 API|DataModel <- DB
 
 ## Future Work / Issues
