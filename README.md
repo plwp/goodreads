@@ -23,7 +23,7 @@ Then you can see the top authors by rating by running:
 
 `python3 presentation.py [n]` where [n] is the number of results you want.
 
-Note: It can take some time for all the results to appear
+Note: The dataset may be updated incrementally
 
 ### Tests
 
