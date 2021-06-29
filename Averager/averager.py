@@ -29,7 +29,7 @@ def process_data(records):
     
     return results
     
-# In theroy this should stop the channel 
+# In theroy this should stop the channel timing out
 async def average_task(batch):
     records = process_data(batch)
     # Send the records to the data model
